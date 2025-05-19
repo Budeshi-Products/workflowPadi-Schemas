@@ -1,0 +1,11 @@
+classDiagram
+  class Comment {
+    text: String
+    author: ObjectId
+    organizationId: ObjectId [Required]
+    createdAt: Date
+    updatedAt: Date
+  }
+
+  Comment --> employee
+  Comment --> organization

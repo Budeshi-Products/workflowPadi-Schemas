@@ -1,0 +1,23 @@
+classDiagram
+  class Contract {
+    title: String
+    projectCode: String
+    number: Number
+    category: String
+    duration: String
+    awardedDate: Date
+    value: Number
+    currency: String
+    description: String
+    status: String
+    creator: ObjectId
+    awardedVendor: ObjectId
+    applicants: Array
+    organizationId: ObjectId [Required]
+    createdAt: Date
+    updatedAt: Date
+  }
+
+  Contract --> employee
+  Contract --> vendor
+  Contract --> organization

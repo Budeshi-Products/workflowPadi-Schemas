@@ -1,0 +1,12 @@
+classDiagram
+  class Department {
+    name: String [Required]
+    description: String
+    members: Array
+    deleted: Boolean
+    organizationId: ObjectId [Required]
+    createdAt: Date
+    updatedAt: Date
+  }
+
+  Department --> organization

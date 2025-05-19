@@ -1,0 +1,18 @@
+classDiagram
+  class LeaveType {
+    name: String [Required]
+    allocation: Number [Required]
+    description: String
+    rolloverConfig.enabled: Boolean
+    rolloverConfig.maxRolloverDays: Number
+    rolloverConfig.expiryMonths: Number
+    rolloverConfig.resetDate: String
+    isDefault: Boolean
+    active: Boolean
+    deleted: Boolean
+    organizationId: ObjectId [Required]
+    createdAt: Date
+    updatedAt: Date
+  }
+
+  LeaveType --> organization

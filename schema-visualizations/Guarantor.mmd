@@ -1,0 +1,17 @@
+classDiagram
+  class Guarantor {
+    name: String
+    phone: String
+    email: String
+    address: String
+    placeOfWork: String
+    designation: String
+    employee: ObjectId
+    deleted: Boolean
+    organizationId: ObjectId [Required]
+    createdAt: Date
+    updatedAt: Date
+  }
+
+  Guarantor --> employee
+  Guarantor --> organization

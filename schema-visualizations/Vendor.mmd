@@ -1,0 +1,33 @@
+classDiagram
+  class Vendor {
+    accountDetails.holderName: String
+    accountDetails.number: String
+    accountDetails.bankName: String
+    documents: Array
+    contactPerson.name: String
+    contactPerson.phoneNumber: String
+    contactPerson.email: String
+    businessDetails.businessName: String
+    businessDetails.cacRegNumber: String
+    businessDetails.tinNumber: String
+    businessDetails.rcNumber: String
+    businessDetails.registeredAddress: String
+    businessDetails.physicalAddress: String
+    businessDetails.functionalMailAddress: String
+    status: String
+    approvedBy: ObjectId
+    categories: Array
+    password: String
+    resetToken: String
+    resetTokenExpires: Date
+    lockUntil: Date
+    history: Array
+    lastVisited: Date
+    lastLogin: Date
+    organizationId: ObjectId [Required]
+    createdAt: Date
+    updatedAt: Date
+  }
+
+  Vendor --> employee
+  Vendor --> organization

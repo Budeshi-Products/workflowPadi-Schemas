@@ -1,0 +1,56 @@
+classDiagram
+  class Requisition {
+    accountName: String [Required]
+    accountNumber: String [Required]
+    amountInWords: String [Required]
+    budgetHolder: ObjectId
+    reviewer: ObjectId
+    approver: ObjectId
+    bankName: String [Required]
+    codes: String
+    countRef: Number
+    currency: String [Required]
+    checkDate: Date
+    reviewDate: Date
+    approveDate: Date
+    projectChargedTo.account.accountName: String
+    projectChargedTo.account.accountNumber: String
+    projectChargedTo.account.balance: String
+    projectChargedTo.account.bankName: String
+    projectChargedTo.account.id: String
+    projectChargedTo.funder: String
+    projectChargedTo.id: String
+    projectChargedTo.projectName: String
+    user: ObjectId
+    title: String [Required]
+    budgetLineItems: Array
+    supportingDocuments: Array
+    items: Array
+    projectName: String
+    pvNumber: Number
+    sourceAccountNumber: String
+    sourceBankName: String
+    status: String
+    step: Number
+    taxPercentage: String
+    isTaxable: Boolean
+    vendorTIN: String
+    vendorBusinessName: String
+    time: Date
+    total: String [Required]
+    type: String [Required]
+    userId: String [Required]
+    retiredStatus: String
+    paid: Boolean
+    serialNumber: String [Required]
+    approvalNumber: String
+    organizationId: ObjectId [Required]
+    createdAt: Date
+    updatedAt: Date
+  }
+
+  Requisition --> employee
+  Requisition --> employee
+  Requisition --> employee
+  Requisition --> employee
+  Requisition --> organization

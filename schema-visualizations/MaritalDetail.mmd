@@ -1,0 +1,16 @@
+classDiagram
+  class MaritalDetail {
+    nameOfSpouse: String
+    relationship: String
+    address: String
+    phone: String
+    dateOfJoining: String
+    employee: ObjectId
+    deleted: Boolean
+    organizationId: ObjectId [Required]
+    createdAt: Date
+    updatedAt: Date
+  }
+
+  MaritalDetail --> employee
+  MaritalDetail --> organization

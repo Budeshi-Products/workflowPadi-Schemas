@@ -1,0 +1,13 @@
+classDiagram
+  class KanbanTemplate {
+    name: String [Required]
+    description: String
+    columns: Array
+    createdBy: ObjectId [Required]
+    organizationId: ObjectId [Required]
+    createdAt: Date
+    updatedAt: Date
+  }
+
+  KanbanTemplate --> employee
+  KanbanTemplate --> organization

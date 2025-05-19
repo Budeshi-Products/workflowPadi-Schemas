@@ -1,0 +1,13 @@
+classDiagram
+  class BudgetCode {
+    code: String [Required]
+    accountCode: String
+    description: String [Required]
+    project: String [Required]
+    status: String
+    organizationId: ObjectId [Required]
+    createdAt: Date
+    updatedAt: Date
+  }
+
+  BudgetCode --> organization

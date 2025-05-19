@@ -1,0 +1,14 @@
+classDiagram
+  class KanbanColumn {
+    title: String [Required]
+    description: String
+    order: Number
+    color: String
+    progressValue: Number
+    isCompletedStage: Boolean
+    organizationId: ObjectId [Required]
+    createdAt: Date
+    updatedAt: Date
+  }
+
+  KanbanColumn --> organization

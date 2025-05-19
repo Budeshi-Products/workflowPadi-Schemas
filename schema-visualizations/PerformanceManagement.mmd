@@ -1,0 +1,61 @@
+classDiagram
+  class PerformanceManagement {
+    employee: ObjectId [Required]
+    organizationId: ObjectId [Required]
+    reviewPeriod: String [Required]
+    reviewYear: Number [Required]
+    reviewQuarter: Number [Required]
+    reviewMonth: Number [Required]
+    status: String
+    goals: Array
+    ratings.overall.score: Number
+    ratings.overall.comments: String
+    ratings.overall.ratedBy: ObjectId
+    ratings.overall.ratedAt: Date
+    ratings.competencies: Array
+    ratings.keyResults: Array
+    selfAssessment.submitted: Boolean
+    selfAssessment.submittedAt: Date
+    selfAssessment.achievements: Array
+    selfAssessment.challenges: Array
+    selfAssessment.developmentNeeds: Array
+    selfAssessment.comments: String
+    managerAssessment.submitted: Boolean
+    managerAssessment.submittedAt: Date
+    managerAssessment.submittedBy: ObjectId
+    managerAssessment.strengths: Array
+    managerAssessment.areasOfImprovement: Array
+    managerAssessment.developmentPlan.objectives: Array
+    managerAssessment.developmentPlan.actions: Array
+    managerAssessment.developmentPlan.timeline: String
+    managerAssessment.developmentPlan.resources: Array
+    managerAssessment.comments: String
+    managerAssessment.recommendations.promotion: Boolean
+    managerAssessment.recommendations.salaryReview: Boolean
+    managerAssessment.recommendations.training: Boolean
+    managerAssessment.recommendations.comments: String
+    reviewMeeting.scheduled: Boolean
+    reviewMeeting.scheduledDate: Date
+    reviewMeeting.conducted: Boolean
+    reviewMeeting.conductedDate: Date
+    reviewMeeting.attendees: Array
+    reviewMeeting.minutes: String
+    reviewMeeting.actionItems: Array
+    finalReview.status: String
+    finalReview.approvedBy: ObjectId
+    finalReview.approvedAt: Date
+    finalReview.comments: String
+    attachments: Array
+    createdBy: ObjectId [Required]
+    updatedBy: ObjectId
+    createdAt: Date
+    updatedAt: Date
+  }
+
+  PerformanceManagement --> employee
+  PerformanceManagement --> organization
+  PerformanceManagement --> employee
+  PerformanceManagement --> employee
+  PerformanceManagement --> employee
+  PerformanceManagement --> employee
+  PerformanceManagement --> employee

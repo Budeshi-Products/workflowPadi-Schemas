@@ -1,0 +1,15 @@
+classDiagram
+  class Qualification {
+    type: String
+    institution: String
+    year: String
+    certificateNumber: String
+    employee: ObjectId
+    deleted: Boolean
+    organizationId: ObjectId [Required]
+    createdAt: Date
+    updatedAt: Date
+  }
+
+  Qualification --> employee
+  Qualification --> organization

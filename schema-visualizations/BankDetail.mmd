@@ -1,0 +1,14 @@
+classDiagram
+  class BankDetail {
+    bankName: String
+    accountNumber: String
+    accountHolderName: String
+    employee: ObjectId
+    deleted: Boolean
+    organizationId: ObjectId [Required]
+    createdAt: Date
+    updatedAt: Date
+  }
+
+  BankDetail --> employee
+  BankDetail --> organization

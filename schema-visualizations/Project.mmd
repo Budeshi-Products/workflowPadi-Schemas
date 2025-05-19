@@ -1,0 +1,24 @@
+classDiagram
+  class Project {
+    name: String
+    description: String
+    tasks: Array
+    documents: Array
+    kanbanColumns: Array
+    team: ObjectId
+    teams: Array
+    priority: String
+    author: ObjectId
+    suspended: Boolean
+    done: Boolean
+    archived: Boolean
+    deleted: Boolean
+    dueDate: Date
+    organizationId: ObjectId [Required]
+    createdAt: Date
+    updatedAt: Date
+  }
+
+  Project --> team
+  Project --> employee
+  Project --> organization

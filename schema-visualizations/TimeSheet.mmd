@@ -1,0 +1,19 @@
+classDiagram
+  class TimeSheet {
+    date: String [Required]
+    projectName: String [Required]
+    taskDescription: String [Required]
+    hoursWorked: Number [Required]
+    status: String
+    employee: ObjectId [Required]
+    approver: ObjectId
+    comments: String
+    deleted: Boolean
+    organizationId: ObjectId [Required]
+    createdAt: Date
+    updatedAt: Date
+  }
+
+  TimeSheet --> employee
+  TimeSheet --> employee
+  TimeSheet --> organization

@@ -1,0 +1,22 @@
+classDiagram
+  class Calendar {
+    title: String
+    organizer: String
+    description: String
+    className: String
+    start: Date [Required]
+    startTime: String
+    end: Date
+    stopTime: String
+    allDay: Boolean
+    dow: Array
+    address: String
+    location: String
+    author: ObjectId
+    organizationId: ObjectId [Required]
+    createdAt: Date
+    updatedAt: Date
+  }
+
+  Calendar --> employee
+  Calendar --> organization

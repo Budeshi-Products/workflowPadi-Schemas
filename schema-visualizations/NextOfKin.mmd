@@ -1,0 +1,17 @@
+classDiagram
+  class NextOfKin {
+    firstName: String
+    lastName: String
+    phone: String
+    email: String
+    relationship: String
+    address: String
+    employee: ObjectId
+    deleted: Boolean
+    organizationId: ObjectId [Required]
+    createdAt: Date
+    updatedAt: Date
+  }
+
+  NextOfKin --> employee
+  NextOfKin --> organization

@@ -1,0 +1,64 @@
+classDiagram
+  class Employee {
+    personalInformation: ObjectId
+    bankDetail: ObjectId
+    nextOfKin: ObjectId
+    maritalDetail: ObjectId
+    guarantors: Array
+    qualifications: Array
+    department: ObjectId
+    email: String
+    phone: String
+    firstName: String
+    lastName: String
+    employmentDate: String
+    employeeID: String
+    employmentType: String
+    status: String
+    terminationDate: Date
+    resignationDate: Date
+    retirementDate: Date
+    suspensionDate: Date
+    leaveStartDate: Date
+    lastStatusUpdate: Date
+    personType: String
+    permissions: ObjectId
+    grade: String
+    jobRole: String
+    jobTitle: String
+    officeBranch: String
+    paymentType: String
+    workingHours: String
+    photo.public_id: String
+    photo.url: String
+    password: String
+    isOnboarded: Boolean
+    lastVisited: Date
+    otp: String
+    otpExpires: Date
+    resetToken: String
+    resetTokenExpires: Date
+    lockUntil: Date
+    failedLoginAttempts: Number
+    lastLogin: Date
+    notificationSwitch: String
+    performanceRating: Number
+    satisfactionRating: Number
+    totalAlocateLeave: Number
+    leaveBalance: Number
+    deleted: Boolean
+    mfaEnabled: Boolean
+    organization: ObjectId
+    organizationId: ObjectId [Required]
+    createdAt: Date
+    updatedAt: Date
+  }
+
+  Employee --> personalInformation
+  Employee --> bankDetail
+  Employee --> nextOfKin
+  Employee --> maritalDetail
+  Employee --> department
+  Employee --> permission
+  Employee --> organization
+  Employee --> organization

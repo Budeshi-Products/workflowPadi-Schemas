@@ -1,0 +1,34 @@
+classDiagram
+  class Payslip {
+    scheduleName: String
+    payPeriod: String
+    workDays: Number
+    payDay: String
+    hrPerson: ObjectId
+    approvalStatus: String
+    paymentStatus: String
+    approver: ObjectId
+    grossSalary: Number
+    netSalary: Number
+    totalDeductions: Number
+    pension: Number
+    currency: String
+    earnings: Array
+    deductions: Array
+    month: String
+    year: String
+    employee: ObjectId
+    serialNumber: String
+    uniqueId: String
+    organization: ObjectId
+    deleted: Boolean
+    organizationId: ObjectId [Required]
+    createdAt: Date
+    updatedAt: Date
+  }
+
+  Payslip --> employee
+  Payslip --> employee
+  Payslip --> employee
+  Payslip --> organization
+  Payslip --> organization

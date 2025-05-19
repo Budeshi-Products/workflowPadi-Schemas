@@ -1,0 +1,11 @@
+classDiagram
+  class AccountCode {
+    description: String [Required]
+    value: Number [Required]
+    status: String
+    organizationId: ObjectId [Required]
+    createdAt: Date
+    updatedAt: Date
+  }
+
+  AccountCode --> organization

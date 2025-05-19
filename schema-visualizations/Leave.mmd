@@ -1,0 +1,27 @@
+classDiagram
+  class Leave {
+    note: String
+    leaveType: ObjectId [Required]
+    attachment.public_id: String
+    attachment.url: String
+    employee: ObjectId
+    reliefStaff: ObjectId
+    lineManager: ObjectId
+    status: String
+    startDate: Date
+    endDate: Date
+    resumeDate: Date
+    requestDate: Date
+    numberOfAbsenceDays: Number
+    dates: Array
+    deleted: Boolean
+    organizationId: ObjectId [Required]
+    createdAt: Date
+    updatedAt: Date
+  }
+
+  Leave --> leaveType
+  Leave --> employee
+  Leave --> employee
+  Leave --> employee
+  Leave --> organization

@@ -1,0 +1,27 @@
+classDiagram
+  class PaySchedule {
+    scheduleName: String
+    payPeriod: String
+    workDays: Number
+    payDay: String
+    hrPerson: ObjectId
+    status: String
+    approver: ObjectId
+    currency: String
+    grossSalary: Number
+    netSalary: Number
+    totalDeductions: Number
+    earnings: Array
+    deductions: Array
+    totalPayslip: Number
+    employee: ObjectId
+    deleted: Boolean
+    organizationId: ObjectId [Required]
+    createdAt: Date
+    updatedAt: Date
+  }
+
+  PaySchedule --> employee
+  PaySchedule --> employee
+  PaySchedule --> employee
+  PaySchedule --> organization

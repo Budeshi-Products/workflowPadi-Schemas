@@ -1,0 +1,17 @@
+classDiagram
+  class ProjectFunder {
+    account.accountName: String [Required]
+    account.accountNumber: String [Required]
+    account.bankName: String [Required]
+    account.balance: String
+    account.id: String
+    funder: String [Required]
+    id: String
+    projectName: String [Required]
+    status: String
+    organizationId: ObjectId [Required]
+    createdAt: Date
+    updatedAt: Date
+  }
+
+  ProjectFunder --> organization

@@ -1,0 +1,20 @@
+classDiagram
+  class Benefit {
+    type: String
+    employee: ObjectId
+    employeeName: String
+    status: String [Required]
+    approvedBy: ObjectId
+    name: String [Required]
+    amount: Number [Required]
+    reason: String
+    requestDate: String [Required]
+    department: ObjectId
+    organizationId: String [Required]
+    createdAt: Date
+    updatedAt: Date
+  }
+
+  Benefit --> employee
+  Benefit --> employee
+  Benefit --> department

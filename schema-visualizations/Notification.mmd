@@ -1,0 +1,15 @@
+classDiagram
+  class Notification {
+    notificationType: String
+    msg: String
+    tag: String
+    user: ObjectId
+    read: Boolean
+    expireAt: Date
+    organizationId: ObjectId [Required]
+    createdAt: Date
+    updatedAt: Date
+  }
+
+  Notification --> employee
+  Notification --> organization

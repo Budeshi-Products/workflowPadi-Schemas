@@ -1,0 +1,26 @@
+{
+	"name": "schema_visualization",
+	"version": "0.0.1",
+	"description": "visualizer for workflowPadi",
+	"main": "index.js",
+	"type": "module",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"start": "node index.js",
+		"dev": "node --watch index.js",
+		"generate-schemas": "node generate-all-schemas.js"
+	},
+	"keywords": [
+		"Amebo",
+		"Boomerang",
+		"Gwapp"
+	],
+	"author": "godfreysam09@gmail.com",
+	"license": "ISC",
+	"dependencies": {
+		"mongoose": "^8.15.0",
+		"canvas": "^2.11.2",
+		"mermaid": "^10.9.0",
+		"bcryptjs": "^2.4.3"
+	}
+}

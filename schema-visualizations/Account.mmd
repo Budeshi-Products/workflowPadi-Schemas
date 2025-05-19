@@ -1,0 +1,12 @@
+classDiagram
+  class Account {
+    accountName: String
+    accountNumber: String
+    bankName: String
+    status: String
+    organizationId: ObjectId [Required]
+    createdAt: Date
+    updatedAt: Date
+  }
+
+  Account --> organization

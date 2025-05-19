@@ -1,0 +1,60 @@
+classDiagram
+  class ExitManagement {
+    employee: ObjectId [Required]
+    organizationId: ObjectId [Required]
+    exitType: String [Required]
+    status: String
+    noticeDate: Date [Required]
+    lastWorkingDay: Date [Required]
+    actualExitDate: Date
+    reason: String [Required]
+    exitInterview.conducted: Boolean
+    exitInterview.conductedBy: ObjectId
+    exitInterview.conductedDate: Date
+    exitInterview.feedback.workEnvironment.rating: Number
+    exitInterview.feedback.workEnvironment.comments: String
+    exitInterview.feedback.management.rating: Number
+    exitInterview.feedback.management.comments: String
+    exitInterview.feedback.growthOpportunities.rating: Number
+    exitInterview.feedback.growthOpportunities.comments: String
+    exitInterview.feedback.compensation.rating: Number
+    exitInterview.feedback.compensation.comments: String
+    exitInterview.feedback.workLifeBalance.rating: Number
+    exitInterview.feedback.workLifeBalance.comments: String
+    exitInterview.feedback.overallExperience.rating: Number
+    exitInterview.feedback.overallExperience.comments: String
+    exitInterview.feedback.recommendations: String
+    exitInterview.feedback.rehireEligibility: Boolean
+    exitInterview.feedback.rehireComments: String
+    handoverStatus: String
+    handoverItems: Array
+    clearanceStatus: String
+    clearanceItems: Array
+    finalSettlement.status: String
+    finalSettlement.processedBy: ObjectId
+    finalSettlement.processedDate: Date
+    finalSettlement.amount: Number
+    finalSettlement.components: Array
+    finalSettlement.paymentDate: Date
+    finalSettlement.paymentReference: String
+    documents: Array
+    knowledgeTransfer.required: Boolean
+    knowledgeTransfer.completed: Boolean
+    knowledgeTransfer.details: String
+    knowledgeTransfer.completedDate: Date
+    replacementHired: Boolean
+    replacementEmployee: ObjectId
+    notes: String
+    createdBy: ObjectId [Required]
+    updatedBy: ObjectId
+    createdAt: Date
+    updatedAt: Date
+  }
+
+  ExitManagement --> employee
+  ExitManagement --> organization
+  ExitManagement --> employee
+  ExitManagement --> employee
+  ExitManagement --> employee
+  ExitManagement --> employee
+  ExitManagement --> employee

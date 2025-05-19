@@ -1,0 +1,24 @@
+classDiagram
+  class Task {
+    author: ObjectId
+    name: String
+    description: String
+    assignees: Array
+    documents: Array
+    comments: Array
+    subTasks: Array
+    priority: String
+    kpiIndicator: String
+    column: ObjectId
+    status: String
+    dueDate: Date
+    progress: Number
+    completed: Boolean
+    organizationId: ObjectId [Required]
+    createdAt: Date
+    updatedAt: Date
+  }
+
+  Task --> employee
+  Task --> kanbancolumn
+  Task --> organization

@@ -1,0 +1,13 @@
+classDiagram
+  class Team {
+    name: String
+    description: String
+    team_count: Number
+    members: Array
+    deleted: Boolean
+    organizationId: ObjectId [Required]
+    createdAt: Date
+    updatedAt: Date
+  }
+
+  Team --> organization

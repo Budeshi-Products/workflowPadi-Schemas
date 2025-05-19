@@ -1,0 +1,11 @@
+classDiagram
+  class RefreshToken {
+    token: String
+    employeeId: String
+    expiryDate: Date
+    organizationId: ObjectId
+    createdAt: Date
+    updatedAt: Date
+  }
+
+  RefreshToken --> organization
