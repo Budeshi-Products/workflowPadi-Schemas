@@ -6,15 +6,11 @@ classDiagram
     class BankDetail
     class Benefit
     class BudgetCode
-    class Calendar
-    class Comment
     class Contract
     class Department
-    class Employee
+    class Permission
     class ExitManagement
     class Guarantor
-    class KanbanColumn
-    class KanbanTemplate
     class Leave
     class LeaveType
     class MaritalDetail
@@ -23,15 +19,39 @@ classDiagram
     class Organization
     class PaySchedule
     class Payslip
-    class PerformanceManagement
-    class Permission
-    class PersonalInformation
-    class Project
     class ProjectFunder
     class Qualification
-    class RefreshToken
     class Requisition
-    class Task
-    class Team
     class TimeSheet
     class Vendor
+    Account "1" --> "1" Organization : organizationId (required)
+    AccountCode "1" --> "1" Organization : organizationId (required)
+    BankDetail "1" --> "1" Organization : organizationId (required)
+    Benefit "1" ..> "1" Department : department
+    BudgetCode "1" --> "1" Organization : organizationId (required)
+    Contract "1" ..> "1" Vendor : awardedVendor
+    Contract "1" --> "1" Organization : organizationId (required)
+    Department "1" --> "1" Organization : organizationId (required)
+    ExitManagement "1" --> "1" Organization : organizationId (required)
+    ExitManagement "1" ..> "1" Department : department
+    Guarantor "1" --> "1" Organization : organizationId (required)
+    Leave "1" --> "1" LeaveType : leaveType (required)
+    Leave "1" --> "1" Organization : organizationId (required)
+    LeaveType "1" --> "1" Organization : organizationId (required)
+    MaritalDetail "1" --> "1" Organization : organizationId (required)
+    NextOfKin "1" --> "1" Organization : organizationId (required)
+    Notification "1" --> "1" Organization : organizationId (required)
+    PaySchedule "1" --> "1" Organization : organizationId (required)
+    Payslip "1" --> "1" Organization : organizationId (required)
+    ProjectFunder "1" --> "1" Organization : organizationId (required)
+    Qualification "1" --> "1" Organization : organizationId (required)
+    Requisition "1" --> "1" Organization : organizationId (required)
+    TimeSheet "1" --> "1" Organization : organizationId (required)
+    Vendor "1" --> "1" Organization : organizationId (required)
+
+    %% Legend
+    class Legend {
+        --> : One-to-many relationship
+        --> : Required one-to-one relationship
+        ..> : Optional one-to-one relationship
+    }
