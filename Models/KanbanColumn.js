@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 const { model, Schema } = mongoose;
 
-const kanbanColumnSchema = new Schema(
+const KanbanColumnSchema = new Schema(
 	{
 		title: {
 			type: String,
@@ -30,7 +30,7 @@ const kanbanColumnSchema = new Schema(
 		},
 		organizationId: {
 			type: Schema.Types.ObjectId,
-			ref: "organization",
+			ref: "Organization",
 			required: true,
 			index: true,
 		},
@@ -38,6 +38,6 @@ const kanbanColumnSchema = new Schema(
 	{ timestamps: true },
 );
 
-const KanbanColumn = model("kanbancolumn", kanbanColumnSchema);
-
+const KanbanColumn = model("KanbanColumn", KanbanColumnSchema);
 export default KanbanColumn;
+export { KanbanColumnSchema as schema };

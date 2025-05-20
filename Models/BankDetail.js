@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const bankDetailSchema = new mongoose.Schema(
+const BankDetailSchema = new mongoose.Schema(
 	{
 		bankName: {
 			type: String,
@@ -16,7 +16,7 @@ const bankDetailSchema = new mongoose.Schema(
 		},
 		employee: {
 			type: mongoose.Schema.Types.ObjectId,
-			ref: "employee",
+			ref: "Employee",
 		},
 		deleted: {
 			type: Boolean,
@@ -24,7 +24,7 @@ const bankDetailSchema = new mongoose.Schema(
 		},
 		organizationId: {
 			type: mongoose.Schema.Types.ObjectId,
-			ref: "organization",
+			ref: "Organization",
 			required: true,
 			index: true, // index for query performance
 		},
@@ -32,6 +32,9 @@ const bankDetailSchema = new mongoose.Schema(
 	{ timestamps: true },
 );
 
-bankDetailSchema.index({ organizationId: 1, email: 1 }, { unique: true }); // this is to ensure that the email is unique per organization
+BankDetailSchema.index({ organizationId: 1, email: 1 }, { unique: true }); // this is to ensure that the email is unique per organization
 
-export default mongoose.model("bankDetail", bankDetailSchema);
+// Export the model with consistent casing
+const BankDetail = mongoose.model("BankDetail", BankDetailSchema);
+export default BankDetail;
+export { BankDetailSchema as schema };

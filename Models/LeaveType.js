@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const leaveTypeSchema = new mongoose.Schema(
+const LeaveTypeSchema = new mongoose.Schema(
 	{
 		name: {
 			type: String,
@@ -52,7 +52,7 @@ const leaveTypeSchema = new mongoose.Schema(
 		},
 		organizationId: {
 			type: mongoose.Schema.Types.ObjectId,
-			ref: "organization",
+			ref: "Organization",
 			required: true,
 			index: true, // index for query performance
 		},
@@ -60,4 +60,7 @@ const leaveTypeSchema = new mongoose.Schema(
 	{ timestamps: true },
 );
 
-export default mongoose.model("leaveType", leaveTypeSchema);
+// Export the model with consistent casing
+const LeaveType = mongoose.model("LeaveType", LeaveTypeSchema);
+export default LeaveType;
+export { LeaveTypeSchema as schema };

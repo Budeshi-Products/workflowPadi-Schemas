@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 const { model, Schema } = mongoose;
 
-let calendarSchema = new Schema(
+const CalendarSchema = new Schema(
 	{
 		title: {
 			type: String,
@@ -74,11 +74,11 @@ let calendarSchema = new Schema(
 		},
 		author: {
 			type: mongoose.Schema.Types.ObjectId,
-			ref: "employee",
+			ref: "Employee",
 		},
 		organizationId: {
 			type: Schema.Types.ObjectId,
-			ref: "organization",
+			ref: "Organization",
 			required: true,
 			index: true, // index for query performance
 		},
@@ -86,6 +86,7 @@ let calendarSchema = new Schema(
 	{ timestamps: true },
 );
 
-let Calendar = model("calendar", calendarSchema);
-
+// Export the model with consistent casing
+const Calendar = model("Calendar", CalendarSchema);
 export default Calendar;
+export { CalendarSchema as schema };

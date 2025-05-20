@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const guarantorSchema = new mongoose.Schema(
+const GuarantorSchema = new mongoose.Schema(
 	{
 		name: {
 			type: String,
@@ -28,7 +28,7 @@ const guarantorSchema = new mongoose.Schema(
 		},
 		employee: {
 			type: mongoose.Schema.Types.ObjectId,
-			ref: "employee",
+			ref: "Employee",
 		},
 		deleted: {
 			type: Boolean,
@@ -36,7 +36,7 @@ const guarantorSchema = new mongoose.Schema(
 		},
 		organizationId: {
 			type: mongoose.Schema.Types.ObjectId,
-			ref: "organization",
+			ref: "Organization",
 			required: true,
 			index: true, // index for query performance
 		},
@@ -44,6 +44,9 @@ const guarantorSchema = new mongoose.Schema(
 	{ timestamps: true },
 );
 
-guarantorSchema.index({ organizationId: 1, email: 1 }, { unique: true }); // this is to ensure that the email is unique per organization
+GuarantorSchema.index({ organizationId: 1, email: 1 }, { unique: true }); // this is to ensure that the email is unique per organization
 
-export default mongoose.model("guarantor", guarantorSchema);
+// Export the model with consistent casing
+const Guarantor = mongoose.model("Guarantor", GuarantorSchema);
+export default Guarantor;
+export { GuarantorSchema as schema };

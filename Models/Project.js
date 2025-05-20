@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 const { model, Schema } = mongoose;
 
-let projectSchema = new Schema(
+const ProjectSchema = new Schema(
 	{
 		name: {
 			type: String,
@@ -14,24 +14,24 @@ let projectSchema = new Schema(
 		tasks: [
 			{
 				type: mongoose.Types.ObjectId,
-				ref: "task",
+				ref: "Task",
 			},
 		],
 		documents: [String],
 		kanbanColumns: [
 			{
 				type: mongoose.Types.ObjectId,
-				ref: "kanbancolumn",
+				ref: "KanbanColumn",
 			},
 		],
 		team: {
 			type: mongoose.Types.ObjectId,
-			ref: "team",
+			ref: "Team",
 		},
 		teams: [
 			{
 				type: mongoose.Types.ObjectId,
-				ref: "team",
+				ref: "Team",
 			},
 		],
 		priority: {
@@ -40,7 +40,7 @@ let projectSchema = new Schema(
 
 		author: {
 			type: mongoose.Schema.Types.ObjectId,
-			ref: "employee",
+			ref: "Employee",
 		},
 
 		suspended: {
@@ -67,7 +67,7 @@ let projectSchema = new Schema(
 
 		organizationId: {
 			type: Schema.Types.ObjectId,
-			ref: "organization",
+			ref: "Organization",
 			required: true,
 			index: true, // index for query performance
 		},
@@ -75,6 +75,7 @@ let projectSchema = new Schema(
 	{ timestamps: true },
 );
 
-let Project = model("project", projectSchema);
-
+// Export the model with consistent casing
+const Project = model("Project", ProjectSchema);
 export default Project;
+export { ProjectSchema as schema };

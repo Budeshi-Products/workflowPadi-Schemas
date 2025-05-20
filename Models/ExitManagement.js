@@ -1,15 +1,15 @@
 import mongoose from "mongoose";
 
-const exitManagementSchema = new mongoose.Schema(
+const ExitManagementSchema = new mongoose.Schema(
 	{
 		employee: {
 			type: mongoose.Schema.Types.ObjectId,
-			ref: "employee",
+			ref: "Employee",
 			required: true,
 		},
 		organizationId: {
 			type: mongoose.Schema.Types.ObjectId,
-			ref: "organization",
+			ref: "Organization",
 			required: true,
 			index: true,
 		},
@@ -53,7 +53,7 @@ const exitManagementSchema = new mongoose.Schema(
 			},
 			conductedBy: {
 				type: mongoose.Schema.Types.ObjectId,
-				ref: "employee",
+				ref: "Employee",
 			},
 			conductedDate: Date,
 			feedback: {
@@ -105,7 +105,7 @@ const exitManagementSchema = new mongoose.Schema(
 				},
 				assignedTo: {
 					type: mongoose.Schema.Types.ObjectId,
-					ref: "employee",
+					ref: "Employee",
 				},
 				completedDate: Date,
 				comments: String,
@@ -121,7 +121,7 @@ const exitManagementSchema = new mongoose.Schema(
 			{
 				department: {
 					type: mongoose.Schema.Types.ObjectId,
-					ref: "department",
+					ref: "Department",
 				},
 				status: {
 					type: String,
@@ -130,7 +130,7 @@ const exitManagementSchema = new mongoose.Schema(
 				},
 				approvedBy: {
 					type: mongoose.Schema.Types.ObjectId,
-					ref: "employee",
+					ref: "Employee",
 				},
 				approvedDate: Date,
 				comments: String,
@@ -145,7 +145,7 @@ const exitManagementSchema = new mongoose.Schema(
 			},
 			processedBy: {
 				type: mongoose.Schema.Types.ObjectId,
-				ref: "employee",
+				ref: "Employee",
 			},
 			processedDate: Date,
 			amount: Number,
@@ -176,7 +176,7 @@ const exitManagementSchema = new mongoose.Schema(
 				url: String,
 				uploadedBy: {
 					type: mongoose.Schema.Types.ObjectId,
-					ref: "employee",
+					ref: "Employee",
 				},
 				uploadedDate: Date,
 			},
@@ -194,17 +194,17 @@ const exitManagementSchema = new mongoose.Schema(
 		},
 		replacementEmployee: {
 			type: mongoose.Schema.Types.ObjectId,
-			ref: "employee",
+			ref: "Employee",
 		},
 		notes: String,
 		createdBy: {
 			type: mongoose.Schema.Types.ObjectId,
-			ref: "employee",
+			ref: "Employee",
 			required: true,
 		},
 		updatedBy: {
 			type: mongoose.Schema.Types.ObjectId,
-			ref: "employee",
+			ref: "Employee",
 		},
 	},
 	{
@@ -213,9 +213,12 @@ const exitManagementSchema = new mongoose.Schema(
 );
 
 // Indexes for better query performance
-exitManagementSchema.index({ organizationId: 1, employee: 1 });
-exitManagementSchema.index({ organizationId: 1, status: 1 });
-exitManagementSchema.index({ organizationId: 1, exitType: 1 });
-exitManagementSchema.index({ organizationId: 1, lastWorkingDay: 1 });
+ExitManagementSchema.index({ organizationId: 1, employee: 1 });
+ExitManagementSchema.index({ organizationId: 1, status: 1 });
+ExitManagementSchema.index({ organizationId: 1, exitType: 1 });
+ExitManagementSchema.index({ organizationId: 1, lastWorkingDay: 1 });
 
-export default mongoose.model("exitManagement", exitManagementSchema);
+// Export the model with consistent casing
+const ExitManagement = mongoose.model("ExitManagement", ExitManagementSchema);
+export default ExitManagement;
+export { ExitManagementSchema as schema };

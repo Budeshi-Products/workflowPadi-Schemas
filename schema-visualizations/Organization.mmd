@@ -1,0 +1,26 @@
+classDiagram
+  class Organization {
+    name: String [Required]
+    website: String
+    acronym: String [Required]
+    overview: String
+    socialMedia: Array
+    email: String [Required]
+    phone: String
+    address.street: String
+    address.city: String
+    address.state: String
+    address.country: String
+    address.postalCode: String
+    logo.public_id: String
+    logo.url: String
+    dateFounded: Date
+    verified: Boolean
+    verificationCode: String
+    isActive: Boolean
+    agreedToPrivacyPolicy: Boolean
+    deleted: Boolean
+    createdAt: Date
+    updatedAt: Date
+  }
+

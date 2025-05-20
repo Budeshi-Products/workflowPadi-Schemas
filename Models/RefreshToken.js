@@ -1,22 +1,25 @@
 import mongoose from "mongoose";
 const { model, Schema } = mongoose;
 
-const refreshTokenSchema = new Schema(
+const RefreshTokenSchema = new Schema(
 	{
 		token: String,
 		employeeId: String,
 		expiryDate: Date,
 		organizationId: {
 			type: mongoose.Schema.Types.ObjectId,
-			ref: "organization",
+			ref: "Organization",
 		},
 	},
 	{ timestamps: true },
 );
 
 // Create proper indexes
-refreshTokenSchema.index({ token: 1 }, { unique: true });
-refreshTokenSchema.index({ employeeId: 1 });
-refreshTokenSchema.index({ organizationId: 1 });
+RefreshTokenSchema.index({ token: 1 }, { unique: true });
+RefreshTokenSchema.index({ employeeId: 1 });
+RefreshTokenSchema.index({ organizationId: 1 });
 
-export default model("refreshToken", refreshTokenSchema);
+// Export the model with consistent casing
+const RefreshToken = model("RefreshToken", RefreshTokenSchema);
+export default RefreshToken;
+export { RefreshTokenSchema as schema };

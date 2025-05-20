@@ -22,21 +22,21 @@ const contractSchema = new mongoose.Schema(
 		},
 		creator: {
 			type: mongoose.Schema.Types.ObjectId,
-			ref: "employee",
+			ref: "Employee",
 		},
 		awardedVendor: {
 			type: mongoose.Schema.Types.ObjectId,
-			ref: "vendor",
+			ref: "Vendor",
 		},
 		applicants: [
 			{
 				type: mongoose.Schema.Types.ObjectId,
-				ref: "vendor",
+				ref: "Vendor",
 			},
 		],
 		organizationId: {
 			type: mongoose.Schema.Types.ObjectId,
-			ref: "organization",
+			ref: "Organization",
 			required: true,
 			index: true, // index for query performance
 		},

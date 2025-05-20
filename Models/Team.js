@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 const { model, Schema } = mongoose;
 
-let teamSchema = new Schema(
+const TeamSchema = new Schema(
 	{
 		name: {
 			type: String,
@@ -19,7 +19,7 @@ let teamSchema = new Schema(
 		members: [
 			{
 				type: mongoose.Schema.Types.ObjectId,
-				ref: "employee",
+				ref: "Employee",
 			},
 		],
 
@@ -30,14 +30,15 @@ let teamSchema = new Schema(
 
 		organizationId: {
 			type: Schema.Types.ObjectId,
-			ref: "organization",
+			ref: "Organization",
 			required: true,
 			index: true, // index for query performance
 		},
 	},
 	{ timestamps: true },
 );
- 
-let Team = model("team", teamSchema);
 
+// Export the model with consistent casing
+const Team = model("Team", TeamSchema);
 export default Team;
+export { TeamSchema as schema };

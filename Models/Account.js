@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const accountSchema = new mongoose.Schema(
+const AccountSchema = new mongoose.Schema(
 	{
 		accountName: {
 			type: String,
@@ -18,7 +18,7 @@ const accountSchema = new mongoose.Schema(
 		},
 		organizationId: {
 			type: mongoose.Schema.Types.ObjectId,
-			ref: "organization",
+			ref: "Organization",
 			required: true,
 			index: true, // index for query performance
 		},
@@ -26,6 +26,7 @@ const accountSchema = new mongoose.Schema(
 	{ timestamps: true },
 );
 
-const Account = mongoose.model("Account", accountSchema);
-
+// Export the model with consistent casing
+const Account = mongoose.model("Account", AccountSchema);
 export default Account;
+export { AccountSchema as schema };

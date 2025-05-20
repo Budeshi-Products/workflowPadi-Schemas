@@ -1,10 +1,9 @@
 import mongoose from "mongoose";
 
-const personalInformationSchema = new mongoose.Schema(
+const PersonalInformationSchema = new mongoose.Schema(
 	{
 		email: {
 			type: String,
-			unqiue: true,
 		},
 		phone: {
 			type: String,
@@ -106,7 +105,7 @@ const personalInformationSchema = new mongoose.Schema(
 		},
 		employee: {
 			type: mongoose.Schema.Types.ObjectId,
-			ref: "employee",
+			ref: "Employee",
 		},
 		deleted: {
 			type: Boolean,
@@ -114,7 +113,7 @@ const personalInformationSchema = new mongoose.Schema(
 		},
 		organizationId: {
 			type: mongoose.Schema.Types.ObjectId,
-			ref: "organization",
+			ref: "Organization",
 			required: true,
 			index: true, // index for query performance
 		},
@@ -123,7 +122,7 @@ const personalInformationSchema = new mongoose.Schema(
 );
 
 // Pre-save hook to update the address field before saving the document
-personalInformationSchema.pre("save", function (next) {
+PersonalInformationSchema.pre("save", function (next) {
 	const addressComponents = [
 		this.street,
 		this.apartment,
@@ -135,12 +134,16 @@ personalInformationSchema.pre("save", function (next) {
 	next();
 });
 
-personalInformationSchema.index(
+// Keep the compound unique index
+PersonalInformationSchema.index(
 	{ organizationId: 1, email: 1 },
 	{ unique: true },
-); // this is to ensure that the email is unique per organization
-
-export default mongoose.model(
-	"personalInformation",
-	personalInformationSchema,
 );
+
+// Export the model with consistent casing
+const PersonalInformation = mongoose.model(
+	"PersonalInformation",
+	PersonalInformationSchema,
+);
+export default PersonalInformation;
+export { PersonalInformationSchema as schema };

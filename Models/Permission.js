@@ -1,11 +1,11 @@
 import mongoose from "mongoose";
 const { Schema } = mongoose;
 
-const permissionSchema = new Schema(
+const PermissionSchema = new Schema(
 	{
 		employee: {
 			type: Schema.Types.ObjectId,
-			ref: "employee", 
+			ref: "Employee",
 			required: true,
 		},
 		// BoomerangHR Permissions
@@ -726,7 +726,7 @@ const permissionSchema = new Schema(
 		},
 		organizationId: {
 			type: Schema.Types.ObjectId,
-			ref: "organization",
+			ref: "Organization",
 			required: true,
 			index: true, // index for query performance
 		},
@@ -734,6 +734,8 @@ const permissionSchema = new Schema(
 	{ timestamps: true },
 );
 
-permissionSchema.index({ organizationId: 1, employee: 1 });
+PermissionSchema.index({ organizationId: 1, employee: 1 });
 
-export default mongoose.model("permission", permissionSchema); // Ensure mongoose.model is used
+const Permission = mongoose.model("Permission", PermissionSchema);
+export default Permission;
+export { PermissionSchema as schema };

@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const notificationSchema = new mongoose.Schema(
+const NotificationSchema = new mongoose.Schema(
 	{
 		notificationType: {
 			type: String,
@@ -13,7 +13,7 @@ const notificationSchema = new mongoose.Schema(
 		},
 		user: {
 			type: mongoose.Schema.Types.ObjectId,
-			ref: "employee",
+			ref: "Employee",
 		},
 		read: {
 			type: Boolean,
@@ -27,7 +27,7 @@ const notificationSchema = new mongoose.Schema(
 		},
 		organizationId: {
 			type: mongoose.Schema.Types.ObjectId,
-			ref: "organization",
+			ref: "Organization",
 			required: true,
 			index: true, // index for query performance
 		},
@@ -35,6 +35,6 @@ const notificationSchema = new mongoose.Schema(
 	{ timestamps: true },
 );
 
-notificationSchema.index({ organizationId: 1, email: 1 }, { unique: true }); // this is to ensure that the email is unique per organization
-
-export default mongoose.model("notification", notificationSchema);
+const Notification = mongoose.model("Notification", NotificationSchema);
+export default Notification;
+export { NotificationSchema as schema };

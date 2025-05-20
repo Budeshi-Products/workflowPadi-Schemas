@@ -1,15 +1,15 @@
 import mongoose from "mongoose";
 
-const performanceManagementSchema = new mongoose.Schema(
+const PerformanceManagementSchema = new mongoose.Schema(
 	{
 		employee: {
 			type: mongoose.Schema.Types.ObjectId,
-			ref: "employee",
+			ref: "Employee",
 			required: true,
 		},
 		organizationId: {
 			type: mongoose.Schema.Types.ObjectId,
-			ref: "organization",
+			ref: "Organization",
 			required: true,
 			index: true,
 		},
@@ -93,7 +93,7 @@ const performanceManagementSchema = new mongoose.Schema(
 						text: String,
 						addedBy: {
 							type: mongoose.Schema.Types.ObjectId,
-							ref: "employee",
+							ref: "Employee",
 						},
 						addedAt: {
 							type: Date,
@@ -114,7 +114,7 @@ const performanceManagementSchema = new mongoose.Schema(
 				comments: String,
 				ratedBy: {
 					type: mongoose.Schema.Types.ObjectId,
-					ref: "employee",
+					ref: "Employee",
 				},
 				ratedAt: Date,
 			},
@@ -186,7 +186,7 @@ const performanceManagementSchema = new mongoose.Schema(
 			submittedAt: Date,
 			submittedBy: {
 				type: mongoose.Schema.Types.ObjectId,
-				ref: "employee",
+				ref: "Employee",
 			},
 			strengths: [String],
 			areasOfImprovement: [String],
@@ -229,7 +229,7 @@ const performanceManagementSchema = new mongoose.Schema(
 				{
 					employee: {
 						type: mongoose.Schema.Types.ObjectId,
-						ref: "employee",
+						ref: "Employee",
 					},
 					role: {
 						type: String,
@@ -243,7 +243,7 @@ const performanceManagementSchema = new mongoose.Schema(
 					description: String,
 					assignedTo: {
 						type: mongoose.Schema.Types.ObjectId,
-						ref: "employee",
+						ref: "Employee",
 					},
 					dueDate: Date,
 					status: {
@@ -263,7 +263,7 @@ const performanceManagementSchema = new mongoose.Schema(
 			},
 			approvedBy: {
 				type: mongoose.Schema.Types.ObjectId,
-				ref: "employee",
+				ref: "Employee",
 			},
 			approvedAt: Date,
 			comments: String,
@@ -285,19 +285,19 @@ const performanceManagementSchema = new mongoose.Schema(
 				url: String,
 				uploadedBy: {
 					type: mongoose.Schema.Types.ObjectId,
-					ref: "employee",
+					ref: "Employee",
 				},
 				uploadedAt: Date,
 			},
 		],
 		createdBy: {
 			type: mongoose.Schema.Types.ObjectId,
-			ref: "employee",
+			ref: "Employee",
 			required: true,
 		},
 		updatedBy: {
 			type: mongoose.Schema.Types.ObjectId,
-			ref: "employee",
+			ref: "Employee",
 		},
 	},
 	{
@@ -306,20 +306,22 @@ const performanceManagementSchema = new mongoose.Schema(
 );
 
 // Indexes for better query performance
-performanceManagementSchema.index({
+PerformanceManagementSchema.index({
 	organizationId: 1,
 	employee: 1,
 	reviewYear: 1,
 	reviewPeriod: 1,
 });
-performanceManagementSchema.index({ organizationId: 1, status: 1 });
-performanceManagementSchema.index({
+PerformanceManagementSchema.index({ organizationId: 1, status: 1 });
+PerformanceManagementSchema.index({
 	organizationId: 1,
 	"ratings.overall.score": 1,
 });
-performanceManagementSchema.index({ organizationId: 1, "goals.status": 1 });
+PerformanceManagementSchema.index({ organizationId: 1, "goals.status": 1 });
 
-export default mongoose.model(
-	"performanceManagement",
-	performanceManagementSchema,
+const PerformanceManagement = mongoose.model(
+	"PerformanceManagement",
+	PerformanceManagementSchema,
 );
+export default PerformanceManagement;
+export { PerformanceManagementSchema as schema };

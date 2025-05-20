@@ -10,9 +10,6 @@ This directory contains visualizations for all models in the system.
 - AccountCode
   - [Mermaid Definition](AccountCode.mmd)
   
-- Attachment
-  - [Mermaid Definition](Attachment.mmd)
-  
 - BankDetail
   - [Mermaid Definition](BankDetail.mmd)
   
@@ -63,6 +60,9 @@ This directory contains visualizations for all models in the system.
   
 - Notification
   - [Mermaid Definition](Notification.mmd)
+  
+- Organization
+  - [Mermaid Definition](Organization.mmd)
   
 - PaySchedule
   - [Mermaid Definition](PaySchedule.mmd)

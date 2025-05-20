@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const nextOfKinSchema = new mongoose.Schema(
+const NextOfKinSchema = new mongoose.Schema(
 	{
 		firstName: {
 			type: String,
@@ -28,7 +28,7 @@ const nextOfKinSchema = new mongoose.Schema(
 		},
 		employee: {
 			type: mongoose.Schema.Types.ObjectId,
-			ref: "employee",
+			ref: "Employee",
 		},
 		deleted: {
 			type: Boolean,
@@ -36,7 +36,7 @@ const nextOfKinSchema = new mongoose.Schema(
 		},
 		organizationId: {
 			type: mongoose.Schema.Types.ObjectId,
-			ref: "organization",
+			ref: "Organization",
 			required: true,
 			index: true, // index for query performance
 		},
@@ -44,6 +44,9 @@ const nextOfKinSchema = new mongoose.Schema(
 	{ timestamps: true },
 );
 
-nextOfKinSchema.index({ organizationId: 1, email: 1 }, { unique: true }); // this is to ensure that the email is unique per organization
+NextOfKinSchema.index({ organizationId: 1, email: 1 }, { unique: true }); // this is to ensure that the email is unique per organization
 
-export default mongoose.model("nextOfKin", nextOfKinSchema);
+// Export the model with consistent casing
+const NextOfKin = mongoose.model("NextOfKin", NextOfKinSchema);
+export default NextOfKin;
+export { NextOfKinSchema as schema };

@@ -1,13 +1,13 @@
 import mongoose from "mongoose";
 
-const leaveSchema = new mongoose.Schema(
+const LeaveSchema = new mongoose.Schema(
 	{
 		note: {
 			type: String,
 		},
 		leaveType: {
 			type: mongoose.Schema.Types.ObjectId,
-			ref: "leaveType",
+			ref: "LeaveType",
 			required: true,
 		},
 		attachment: {
@@ -22,16 +22,16 @@ const leaveSchema = new mongoose.Schema(
 		},
 		employee: {
 			type: mongoose.Schema.Types.ObjectId,
-			ref: "employee",
+			ref: "Employee",
 		},
 		reliefStaff: {
 			type: mongoose.Schema.Types.ObjectId,
-			ref: "employee",
+			ref: "Employee",
 		},
 		lineManager: {
 			// Renamed from hod
 			type: mongoose.Schema.Types.ObjectId,
-			ref: "employee",
+			ref: "Employee",
 		},
 		status: {
 			type: String,
@@ -69,7 +69,7 @@ const leaveSchema = new mongoose.Schema(
 		},
 		organizationId: {
 			type: mongoose.Schema.Types.ObjectId,
-			ref: "organization",
+			ref: "Organization",
 			required: true,
 			index: true, //index for query performance
 		},
@@ -77,4 +77,6 @@ const leaveSchema = new mongoose.Schema(
 	{ timestamps: true },
 );
 
-export default mongoose.model("leave", leaveSchema);
+const Leave = mongoose.model("Leave", LeaveSchema);
+export default Leave;
+export { LeaveSchema as schema };

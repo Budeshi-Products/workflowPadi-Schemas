@@ -13,7 +13,7 @@ const budgetCodeSchema = new mongoose.Schema(
 		},
 		organizationId: {
 			type: mongoose.Schema.Types.ObjectId,
-			ref: "organization",
+			ref: "Organization",
 			required: true,
 			index: true, // index for query performance
 		},
@@ -21,10 +21,6 @@ const budgetCodeSchema = new mongoose.Schema(
 	{ timestamps: true },
 );
 
-const BudgetCode = mongoose.model(
-    "BudgetCode",
-    budgetCodeSchema,
-    "budgetCodes"
-);
+const BudgetCode = mongoose.model("BudgetCode", budgetCodeSchema);
 
 export default BudgetCode;

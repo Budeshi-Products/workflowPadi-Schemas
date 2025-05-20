@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 const { Schema } = mongoose;
 
-const earningSchema = new Schema(
+const EarningSchema = new Schema(
 	{
 		name: {
 			type: String,
@@ -15,7 +15,7 @@ const earningSchema = new Schema(
 	{ _id: false },
 );
 
-const deductionSchema = new Schema(
+const DeductionSchema = new Schema(
 	{
 		name: {
 			type: String,
@@ -29,7 +29,7 @@ const deductionSchema = new Schema(
 	{ _id: false },
 );
 
-const payslipSchema = new mongoose.Schema(
+const PayslipSchema = new mongoose.Schema(
 	{
 		scheduleName: {
 			type: String,
@@ -47,7 +47,7 @@ const payslipSchema = new mongoose.Schema(
 		},
 		hrPerson: {
 			type: mongoose.Schema.Types.ObjectId,
-			ref: "employee",
+			ref: "Employee",
 		},
 		approvalStatus: {
 			type: String,
@@ -61,7 +61,7 @@ const payslipSchema = new mongoose.Schema(
 		},
 		approver: {
 			type: mongoose.Schema.Types.ObjectId,
-			ref: "employee",
+			ref: "Employee",
 		},
 		grossSalary: {
 			type: Number,
@@ -82,8 +82,8 @@ const payslipSchema = new mongoose.Schema(
 		currency: {
 			type: String,
 		},
-		earnings: [earningSchema],
-		deductions: [deductionSchema],
+		earnings: [EarningSchema],
+		deductions: [DeductionSchema],
 		month: {
 			type: String,
 			default: "",
@@ -94,7 +94,7 @@ const payslipSchema = new mongoose.Schema(
 		},
 		employee: {
 			type: mongoose.Schema.Types.ObjectId,
-			ref: "employee",
+			ref: "Employee",
 		},
 		serialNumber: {
 			type: String,
@@ -106,7 +106,7 @@ const payslipSchema = new mongoose.Schema(
 		},
 		organization: {
 			type: mongoose.Schema.Types.ObjectId,
-			ref: "organization",
+			ref: "Organization",
 		},
 		deleted: {
 			type: Boolean,
@@ -114,7 +114,7 @@ const payslipSchema = new mongoose.Schema(
 		},
 		organizationId: {
 			type: mongoose.Schema.Types.ObjectId,
-			ref: "organization",
+			ref: "Organization",
 			required: true,
 			index: true,
 		},
@@ -126,7 +126,7 @@ const payslipSchema = new mongoose.Schema(
 // payslipSchema.index({ organizationId: 1, email: 1 }, { unique: true });
 
 // Add appropriate unique index for payslips
-payslipSchema.index(
+PayslipSchema.index(
 	{
 		organizationId: 1,
 		employee: 1,
@@ -140,4 +140,7 @@ payslipSchema.index(
 	},
 );
 
-export default mongoose.model("payslip", payslipSchema);
+// Export the model with consistent casing
+const Payslip = mongoose.model("Payslip", PayslipSchema);
+export default Payslip;
+export { PayslipSchema as schema };

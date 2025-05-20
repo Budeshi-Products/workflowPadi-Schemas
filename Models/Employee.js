@@ -1,38 +1,38 @@
 import mongoose from "mongoose";
 
-const employeeSchema = new mongoose.Schema(
+const EmployeeSchema = new mongoose.Schema(
 	{
 		personalInformation: {
 			type: mongoose.Schema.Types.ObjectId,
-			ref: "personalInformation",
+			ref: "PersonalInformation",
 		},
 		bankDetail: {
 			type: mongoose.Schema.Types.ObjectId,
-			ref: "bankDetail",
+			ref: "BankDetail",
 		},
 		nextOfKin: {
 			type: mongoose.Schema.Types.ObjectId,
-			ref: "nextOfKin",
+			ref: "NextOfKin",
 		},
 		maritalDetail: {
 			type: mongoose.Schema.Types.ObjectId,
-			ref: "maritalDetail",
+			ref: "MaritalDetail",
 		},
 		guarantors: [
 			{
 				type: mongoose.Schema.Types.ObjectId,
-				ref: "guarantor",
+				ref: "Guarantor",
 			},
 		],
 		qualifications: [
 			{
 				type: mongoose.Schema.Types.ObjectId,
-				ref: "qualification",
+				ref: "Qualification",
 			},
 		],
 		department: {
 			type: mongoose.Schema.Types.ObjectId,
-			ref: "department",
+			ref: "Department",
 		},
 		email: {
 			type: String,
@@ -80,7 +80,7 @@ const employeeSchema = new mongoose.Schema(
 		},
 		permissions: {
 			type: mongoose.Schema.Types.ObjectId,
-			ref: "permission",
+			ref: "Permission",
 		},
 		grade: {
 			type: String,
@@ -185,11 +185,11 @@ const employeeSchema = new mongoose.Schema(
 		},
 		organization: {
 			type: mongoose.Schema.Types.ObjectId,
-			ref: "organization",
+			ref: "Organization",
 		},
 		organizationId: {
 			type: mongoose.Schema.Types.ObjectId,
-			ref: "organization",
+			ref: "Organization",
 			required: true,
 			index: true, // index for query performance
 		},
@@ -197,10 +197,10 @@ const employeeSchema = new mongoose.Schema(
 	{ timestamps: true },
 );
 
-employeeSchema.index({ organizationId: 1, email: 1 }, { unique: true }); // this is to ensure that the email is unique per organization
+EmployeeSchema.index({ organizationId: 1, email: 1 }, { unique: true }); // this is to ensure that the email is unique per organization
 
 // Add pre-save hook to sync jobRole and jobTitle
-employeeSchema.pre("save", async function (next) {
+EmployeeSchema.pre("save", async function (next) {
 	// Sync jobRole and jobTitle if either is modified
 	if (this.isModified("jobRole")) {
 		this.jobTitle = this.jobRole;
@@ -210,7 +210,7 @@ employeeSchema.pre("save", async function (next) {
 
 	// Handle permissions creation for new employees
 	if (this.isNew && !this.permissions) {
-		const Permission = mongoose.model("permission");
+		const Permission = mongoose.model("Permission");
 		try {
 			const defaultPermissions = new Permission({
 				employee: this._id,
@@ -227,9 +227,9 @@ employeeSchema.pre("save", async function (next) {
 });
 
 // Add middleware to remove permissions when an employee is removed
-employeeSchema.post("findOneAndRemove", async function (doc) {
+EmployeeSchema.post("findOneAndRemove", async function (doc) {
 	if (doc && doc.permissions) {
-		const Permission = mongoose.model("permission");
+		const Permission = mongoose.model("Permission");
 		try {
 			await Permission.findByIdAndRemove(doc.permissions);
 		} catch (error) {
@@ -239,4 +239,7 @@ employeeSchema.post("findOneAndRemove", async function (doc) {
 	}
 });
 
-export default mongoose.model("employee", employeeSchema);
+// Export the model with consistent casing
+const Employee = mongoose.model("Employee", EmployeeSchema);
+export default Employee;
+export { EmployeeSchema as schema };

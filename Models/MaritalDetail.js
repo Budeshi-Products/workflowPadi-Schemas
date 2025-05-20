@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const maritalDetailSchema = new mongoose.Schema(
+const MaritalDetailSchema = new mongoose.Schema(
 	{
 		nameOfSpouse: {
 			type: String,
@@ -24,7 +24,7 @@ const maritalDetailSchema = new mongoose.Schema(
 		},
 		employee: {
 			type: mongoose.Schema.Types.ObjectId,
-			ref: "employee",
+			ref: "Employee",
 		},
 		deleted: {
 			type: Boolean,
@@ -32,7 +32,7 @@ const maritalDetailSchema = new mongoose.Schema(
 		},
 		organizationId: {
 			type: mongoose.Schema.Types.ObjectId,
-			ref: "organization",
+			ref: "Organization",
 			required: true,
 			index: true, // index for query performance
 		},
@@ -40,6 +40,9 @@ const maritalDetailSchema = new mongoose.Schema(
 	{ timestamps: true },
 );
 
-maritalDetailSchema.index({ organizationId: 1, email: 1 }, { unique: true }); // this is to ensure that the email is unique per organization
+MaritalDetailSchema.index({ organizationId: 1, email: 1 }, { unique: true }); // this is to ensure that the email is unique per organization
 
-export default mongoose.model("maritalDetail", maritalDetailSchema);
+// Export the model with consistent casing
+const MaritalDetail = mongoose.model("MaritalDetail", MaritalDetailSchema);
+export default MaritalDetail;
+export { MaritalDetailSchema as schema };

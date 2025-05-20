@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const timeSheetSchema = new mongoose.Schema(
+const TimeSheetSchema = new mongoose.Schema(
 	{
 		date: {
 			type: String,
@@ -27,12 +27,12 @@ const timeSheetSchema = new mongoose.Schema(
 		},
 		employee: {
 			type: mongoose.Schema.Types.ObjectId,
-			ref: "employee",
+			ref: "Employee",
 			required: true,
 		},
 		approver: {
 			type: mongoose.Schema.Types.ObjectId,
-			ref: "employee",
+			ref: "Employee",
 		},
 		comments: {
 			type: String,
@@ -43,7 +43,7 @@ const timeSheetSchema = new mongoose.Schema(
 		},
 		organizationId: {
 			type: mongoose.Schema.Types.ObjectId,
-			ref: "organization",
+			ref: "Organization",
 			required: true,
 			index: true,
 		},
@@ -52,10 +52,13 @@ const timeSheetSchema = new mongoose.Schema(
 );
 
 // Index for organization and employee lookup optimization
-timeSheetSchema.index({ organizationId: 1, employee: 1 });
+TimeSheetSchema.index({ organizationId: 1, employee: 1 });
 // Index for status queries within an organization
-timeSheetSchema.index({ organizationId: 1, status: 1 });
+TimeSheetSchema.index({ organizationId: 1, status: 1 });
 // Index for date-based queries
-timeSheetSchema.index({ organizationId: 1, date: 1 });
+TimeSheetSchema.index({ organizationId: 1, date: 1 });
 
-export default mongoose.model("timeSheet", timeSheetSchema);
+// Export the model with consistent casing
+const TimeSheet = mongoose.model("TimeSheet", TimeSheetSchema);
+export default TimeSheet;
+export { TimeSheetSchema as schema };

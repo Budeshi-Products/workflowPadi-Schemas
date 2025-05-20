@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const qualificationSchema = new mongoose.Schema(
+const QualificationSchema = new mongoose.Schema(
 	{
 		type: {
 			type: String,
@@ -20,7 +20,7 @@ const qualificationSchema = new mongoose.Schema(
 		},
 		employee: {
 			type: mongoose.Schema.Types.ObjectId,
-			ref: "employee",
+			ref: "Employee",
 		},
 		deleted: {
 			type: Boolean,
@@ -28,7 +28,7 @@ const qualificationSchema = new mongoose.Schema(
 		},
 		organizationId: {
 			type: mongoose.Schema.Types.ObjectId,
-			ref: "organization",
+			ref: "Organization",
 			required: true,
 			index: true, // index for query performance
 		},
@@ -39,6 +39,7 @@ const qualificationSchema = new mongoose.Schema(
 	},
 );
 
-qualificationSchema.index({ organizationId: 1, email: 1 }, { unique: true }); // this is to ensure that the email is unique per organization
-
-export default mongoose.model("qualification", qualificationSchema);
+// Export the model with consistent casing
+const Qualification = mongoose.model("Qualification", QualificationSchema);
+export default Qualification;
+export { QualificationSchema as schema };

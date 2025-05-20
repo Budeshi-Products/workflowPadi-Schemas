@@ -1,11 +1,11 @@
 import mongoose from "mongoose";
 const { model, Schema } = mongoose;
 
-let taskSchema = new Schema(
+const TaskSchema = new Schema(
 	{
 		author: {
 			type: mongoose.Schema.Types.ObjectId,
-			ref: "employee",
+			ref: "Employee",
 		},
 		name: {
 			type: String,
@@ -16,20 +16,20 @@ let taskSchema = new Schema(
 		assignees: [
 			{
 				type: mongoose.Schema.Types.ObjectId,
-				ref: "employee",
+				ref: "Employee",
 			},
 		],
 		documents: [String],
 		comments: [
 			{
 				type: mongoose.Types.ObjectId,
-				ref: "comment",
+				ref: "Comment",
 			},
 		],
 		subTasks: [
 			{
 				type: mongoose.Types.ObjectId,
-				ref: "task",
+				ref: "Task",
 			},
 		],
 		priority: {
@@ -41,7 +41,7 @@ let taskSchema = new Schema(
 		// Replace the fixed status with a reference to the column
 		column: {
 			type: mongoose.Types.ObjectId,
-			ref: "kanbancolumn",
+			ref: "KanbanColumn",
 		},
 		// Keep the status field for backward compatibility but mark as deprecated
 		status: {
@@ -65,7 +65,7 @@ let taskSchema = new Schema(
 		},
 		organizationId: {
 			type: Schema.Types.ObjectId,
-			ref: "organization",
+			ref: "Organization",
 			required: true,
 			index: true,
 		},
@@ -74,7 +74,7 @@ let taskSchema = new Schema(
 );
 
 // Update the pre-save hook to work with the new column-based approach
-taskSchema.pre("save", async function (next) {
+TaskSchema.pre("save", async function (next) {
 	try {
 		// If using new column system
 		if (this.column) {
@@ -103,6 +103,7 @@ taskSchema.pre("save", async function (next) {
 	}
 });
 
-let Task = model("task", taskSchema);
-
+// Export the model with consistent casing
+const Task = model("Task", TaskSchema);
 export default Task;
+export { TaskSchema as schema };

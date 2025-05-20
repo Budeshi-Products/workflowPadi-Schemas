@@ -5,9 +5,9 @@ const RequisitionSchema = new mongoose.Schema(
 		accountName: { type: String, required: true },
 		accountNumber: { type: String, required: true },
 		amountInWords: { type: String, required: true },
-		budgetHolder: { type: mongoose.Schema.Types.ObjectId, ref: "employee" },
-		reviewer: { type: mongoose.Schema.Types.ObjectId, ref: "employee" },
-		approver: { type: mongoose.Schema.Types.ObjectId, ref: "employee" },
+		budgetHolder: { type: mongoose.Schema.Types.ObjectId, ref: "Employee" },
+		reviewer: { type: mongoose.Schema.Types.ObjectId, ref: "Employee" },
+		approver: { type: mongoose.Schema.Types.ObjectId, ref: "Employee" },
 		bankName: { type: String, required: true },
 		codes: String,
 		countRef: Number,
@@ -32,7 +32,7 @@ const RequisitionSchema = new mongoose.Schema(
 		},
 		user: {
 			type: mongoose.Schema.Types.ObjectId,
-			ref: "employee",
+			ref: "Employee",
 		},
 		title: { type: String, required: true },
 		budgetLineItems: [
@@ -94,7 +94,7 @@ const RequisitionSchema = new mongoose.Schema(
 		approvalNumber: String,
 		organizationId: {
 			type: mongoose.Schema.Types.ObjectId,
-			ref: "organization",
+			ref: "Organization",
 			required: true,
 			index: true,
 		},

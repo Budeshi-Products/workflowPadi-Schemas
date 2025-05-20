@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
 
-const vendorSchema = new mongoose.Schema(
+const VendorSchema = new mongoose.Schema(
 	{
 		accountDetails: {
 			holderName: String,
@@ -36,7 +36,7 @@ const vendorSchema = new mongoose.Schema(
 		},
 		approvedBy: {
 			type: mongoose.Schema.Types.ObjectId,
-			ref: "employee",
+			ref: "Employee",
 		},
 		categories: [String],
 		password: String,
@@ -55,7 +55,7 @@ const vendorSchema = new mongoose.Schema(
 		lastLogin: Date,
 		organizationId: {
 			type: mongoose.Schema.Types.ObjectId,
-			ref: "organization",
+			ref: "Organization",
 			required: true,
 			index: true, // index for query performance
 		},
@@ -64,7 +64,7 @@ const vendorSchema = new mongoose.Schema(
 );
 
 // Hash password before saving
-vendorSchema.pre("save", async function (next) {
+VendorSchema.pre("save", async function (next) {
 	try {
 		if (this.isModified("password") && this.password) {
 			const hashedPassword = await bcrypt.hash(this.password, 10);
@@ -77,14 +77,16 @@ vendorSchema.pre("save", async function (next) {
 });
 
 // Compare passwords
-vendorSchema.methods.comparePassword = async function (candidatePassword) {
+VendorSchema.methods.comparePassword = async function (candidatePassword) {
 	return bcrypt.compare(candidatePassword, this.password);
 };
 
 // Check if account is locked
-vendorSchema.methods.isLocked = function () {
+VendorSchema.methods.isLocked = function () {
 	return !!(this.lockUntil && this.lockUntil > new Date());
 };
 
-const Vendor = mongoose.model("vendor", vendorSchema);
+// Export the model with consistent casing
+const Vendor = mongoose.model("Vendor", VendorSchema);
 export default Vendor;
+export { VendorSchema as schema };

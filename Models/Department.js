@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const departmentSchema = new mongoose.Schema(
+const DepartmentSchema = new mongoose.Schema(
 	{
 		name: {
 			type: String,
@@ -14,7 +14,7 @@ const departmentSchema = new mongoose.Schema(
 		members: [
 			{
 				type: mongoose.Schema.Types.ObjectId,
-				ref: "employee", // Assuming your employee model is named 'employee'
+				ref: "Employee", // Updated to match Employee model casing
 			},
 		],
 		deleted: {
@@ -25,7 +25,7 @@ const departmentSchema = new mongoose.Schema(
 		},
 		organizationId: {
 			type: mongoose.Schema.Types.ObjectId,
-			ref: "organization", // Assuming your organization model is named 'organization'
+			ref: "Organization", // Updated to match Organization model casing
 			required: true,
 			index: true, // Index for faster queries scoped to an organization
 		},
@@ -34,10 +34,10 @@ const departmentSchema = new mongoose.Schema(
 );
 
 // Ensure department names are unique within the same organization
-departmentSchema.index({ organizationId: 1, name: 1 }, { unique: true });
+DepartmentSchema.index({ organizationId: 1, name: 1 }, { unique: true });
 
 // Pre-find hook to automatically filter out soft-deleted documents
-departmentSchema.pre(/^find/, function (next) {
+DepartmentSchema.pre(/^find/, function (next) {
 	// Only apply if the query doesn't explicitly ask for deleted items
 	if (this.getFilter().deleted !== true) {
 		this.where({ deleted: { $ne: true } });
@@ -45,4 +45,7 @@ departmentSchema.pre(/^find/, function (next) {
 	next();
 });
 
-export default mongoose.model("department", departmentSchema); // Use lowercase 'department' as model name
+// Export the model with consistent casing
+const Department = mongoose.model("Department", DepartmentSchema);
+export default Department;
+export { DepartmentSchema as schema };

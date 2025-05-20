@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 const { Schema } = mongoose;
 
-const earningSchema = new Schema(
+const EarningSchema = new Schema(
 	{
 		name: {
 			type: String,
@@ -15,7 +15,7 @@ const earningSchema = new Schema(
 	{ _id: false },
 );
 
-const deductionSchema = new Schema(
+const DeductionSchema = new Schema(
 	{
 		name: {
 			type: String,
@@ -29,7 +29,7 @@ const deductionSchema = new Schema(
 	{ _id: false },
 );
 
-const payScheduleSchema = new Schema(
+const PayScheduleSchema = new Schema(
 	{
 		scheduleName: {
 			type: String,
@@ -49,7 +49,7 @@ const payScheduleSchema = new Schema(
 		},
 		hrPerson: {
 			type: mongoose.Schema.Types.ObjectId,
-			ref: "employee",
+			ref: "Employee",
 		},
 		status: {
 			type: String,
@@ -57,7 +57,7 @@ const payScheduleSchema = new Schema(
 		},
 		approver: {
 			type: mongoose.Schema.Types.ObjectId,
-			ref: "employee",
+			ref: "Employee",
 		},
 		currency: {
 			type: String,
@@ -74,15 +74,15 @@ const payScheduleSchema = new Schema(
 			type: Number,
 			default: 0,
 		},
-		earnings: [earningSchema],
-		deductions: [deductionSchema],
+		earnings: [EarningSchema],
+		deductions: [DeductionSchema],
 		totalPayslip: {
 			type: Number,
 			default: 0,
 		},
 		employee: {
 			type: mongoose.Schema.Types.ObjectId,
-			ref: "employee",
+			ref: "Employee",
 		},
 		deleted: {
 			type: Boolean,
@@ -90,7 +90,7 @@ const payScheduleSchema = new Schema(
 		},
 		organizationId: {
 			type: mongoose.Schema.Types.ObjectId,
-			ref: "organization",
+			ref: "Organization",
 			required: true,
 			index: true, // index for query performance
 		},
@@ -98,4 +98,7 @@ const payScheduleSchema = new Schema(
 	{ timestamps: true },
 );
 
-export default mongoose.model("paySchedule", payScheduleSchema);
+// Export the model with consistent casing
+const PaySchedule = mongoose.model("PaySchedule", PayScheduleSchema);
+export default PaySchedule;
+export { PayScheduleSchema as schema };

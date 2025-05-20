@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 const { model, Schema } = mongoose;
 
-let commentSchema = new Schema(
+const CommentSchema = new Schema(
 	{
 		text: {
 			type: String,
@@ -9,12 +9,12 @@ let commentSchema = new Schema(
 
 		author: {
 			type: mongoose.Schema.Types.ObjectId,
-			ref: "employee",
+			ref: "Employee",
 		},
 
 		organizationId: {
 			type: Schema.Types.ObjectId,
-			ref: "organization",
+			ref: "Organization",
 			required: true,
 			index: true, // index for query performance
 		},
@@ -22,6 +22,7 @@ let commentSchema = new Schema(
 	{ timestamps: true },
 );
 
-let Comment = model("comment", commentSchema);
-
+// Export the model with consistent casing
+const Comment = model("Comment", CommentSchema);
 export default Comment;
+export { CommentSchema as schema };

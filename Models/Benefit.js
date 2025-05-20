@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const benefitSchema = new mongoose.Schema(
+const BenefitSchema = new mongoose.Schema(
 	{
 		type: {
 			type: String,
@@ -8,7 +8,7 @@ const benefitSchema = new mongoose.Schema(
 		},
 		employee: {
 			type: mongoose.Schema.Types.ObjectId,
-			ref: "employee",
+			ref: "Employee",
 		},
 		employeeName: {
 			type: String,
@@ -21,7 +21,7 @@ const benefitSchema = new mongoose.Schema(
 		},
 		approvedBy: {
 			type: mongoose.Schema.Types.ObjectId,
-			ref: "employee",
+			ref: "Employee",
 		},
 		name: {
 			type: String,
@@ -44,7 +44,7 @@ const benefitSchema = new mongoose.Schema(
 		},
 		department: {
 			type: mongoose.Schema.Types.ObjectId,
-			ref: "department",
+			ref: "Department",
 		},
 		organizationId: {
 			type: String,
@@ -55,4 +55,7 @@ const benefitSchema = new mongoose.Schema(
 	{ timestamps: true },
 );
 
-export default mongoose.model("benefit", benefitSchema);
+// Export the model with consistent casing
+const Benefit = mongoose.model("Benefit", BenefitSchema);
+export default Benefit;
+export { BenefitSchema as schema };
